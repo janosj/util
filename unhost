@@ -1,0 +1,13 @@
+# Removes the specified line from the known_hosts file.
+# Use to address ssh warnings (remote host id has changed).
+# Add location of this file to your /etc/paths file (mac).
+
+if [ -z "$1" ]
+  then
+    echo "This script requires an argument."
+    echo "Use 'Use unhost <line>' to remove the line from known_hosts."
+    exit 1
+fi
+
+sed -i -e "$1d" ~/.ssh/known_hosts
+
