@@ -1,2 +1,2 @@
-# util
+# utilities
 Helpful Utilities
