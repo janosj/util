@@ -1,12 +1,18 @@
 #!/usr/local/bin/python3
 
 import boto3
+import os
  
 session = boto3.Session()
 creds = session.get_credentials()
- 
-print(f"export AWS_ACCESS_KEY={creds.access_key}")
-print(f"export AWS_ACCESS_KEY_ID={creds.access_key}")
-print(f"export AWS_SECRET_ACCESS_KEY={creds.secret_key}")
-print(f"export AWS_SESSION_TOKEN={creds.token}")
 
+homedir = os.environ.get('HOME')
+f = open(homedir + "/.aws/credentials", "w")
+
+f.write("[default]\n")
+f.write("aws_access_key_id = " + creds.access_key + "\n")
+f.write("aws_secret_access_key = " + creds.secret_key + "\n")
+f.write("aws_session_token = " + creds.token + "\n")
+
+f.close()
+ 
