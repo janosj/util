@@ -5,12 +5,17 @@
 
 import boto3
 import os
+import shutil
  
 session = boto3.Session()
 creds = session.get_credentials()
 
 homedir = os.environ.get('HOME')
-f = open(homedir + "/.aws/credentials", "w")
+filename = homedir + "/.aws/credentials"
+if os.path.isfile(filename):
+  shutil.copyfile(filename, filename + ".BAK")
+  print('Original credentials file copied to ' + filename + '.BAK')
+f = open(filename, "w")
 
 f.write("[default]\n")
 f.write("aws_access_key_id = " + creds.access_key + "\n")
