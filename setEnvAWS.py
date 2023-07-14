@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 
 # Pulls cached SSO credentials and exports them to credentials file.
 # Required for aws-sdk scripts that are not yet SSO-aware.
